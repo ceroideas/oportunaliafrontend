@@ -16,17 +16,31 @@
 
   <script src="https://unpkg.com/@googlemaps/markerwithlabel/dist/index.min.js"></script>
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+   <!-- <script type="text/plain" data-oportunalia-cookie="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-R0R01NFWG6"></script> -->
+  <!-- <script type="text/plain" data-oportunalia-cookie="analytics">
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-R0R01NFWG6');
-  </script>
+  </script> -->
 
   <!-- Pixel Code for https://overtracking.com/ -->
-  <script defer src="https://overtracking.com/p/8J2YDZfiRHuY7CgZ"></script>
+  <!-- <script type="text/plain" data-oportunalia-cookie="marketing" src="https://overtracking.com/p/8J2YDZfiRHuY7CgZ"></script> -->
   <!-- END Pixel Code -->
+
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = window.gtag || function(){ dataLayer.push(arguments); };
+  </script>
+
+  <script type="text/plain" data-oportunalia-cookie="analytics" src="https://www.googletagmanager.com/gtag/js?id=G-R0R01NFWG6"></script>
+  <script type="text/plain" data-oportunalia-cookie="analytics">
+    gtag('js', new Date());
+    gtag('config', 'G-R0R01NFWG6');
+  </script>
+
+  <script type="text/plain" data-oportunalia-cookie="marketing" src="https://overtracking.com/p/8J2YDZfiRHuY7CgZ"></script>
 </head>
 <body>
   <app-root></app-root>

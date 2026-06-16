@@ -1,9 +1,103 @@
 <div id="app" class="app" [dir]="(settings.rtl) ? 'rtl' : 'ltr'"
-            [ngClass]="[settings.theme, 'toolbar-'+settings.toolbar]" 
-            [class.main-toolbar-fixed]="settings.mainToolbarFixed"> 
+            [ngClass]="[settings.theme, 'toolbar-'+settings.toolbar]"
+            [class.main-toolbar-fixed]="settings.mainToolbarFixed">
     <router-outlet></router-outlet>
-    <ng-progress 
+    <ng-progress
         [spinner]="false"
-        [meteor]="false" 
+        [meteor]="false"
         color="#e91e63"></ng-progress>
+
+
+    <style>
+    #oportunalia-cookie-banner, #oportunalia-cookie-modal { box-sizing: border-box; font-family: inherit; }
+    #oportunalia-cookie-banner *, #oportunalia-cookie-modal * { box-sizing: border-box; }
+    #oportunalia-cookie-banner { position: fixed; left: 0; right: 0; bottom: 0; z-index: 99999; background: #0d47a1; color: #e5e7eb; padding: 18px 20px; box-shadow: 0 -4px 20px rgba(0,0,0,.25); display: none; }
+    #oportunalia-cookie-banner .oportunalia-wrap { max-width: 1100px; margin: 0 auto; display: flex; gap: 18px; align-items: center; flex-wrap: wrap; justify-content: space-between; }
+    #oportunalia-cookie-banner p { margin: 0; font-size: .9rem; line-height: 1.55; flex: 1 1 460px; min-width: 280px; }
+    #oportunalia-cookie-banner a { color: #93c5fd; text-decoration: underline; }
+    .oportunalia-btns { display: flex; gap: 10px; flex-wrap: wrap; flex: 0 0 auto; }
+    .oportunalia-btn { cursor: pointer; border: 0; border-radius: 8px; padding: 10px 18px; font-size: .88rem; font-weight: 600; line-height: 1; }
+    .oportunalia-btn-accept { background: #16a34a; color: #fff; }
+    .oportunalia-btn-reject { background: #374151; color: #fff; }
+    .oportunalia-btn-config { background: transparent; color: #e5e7eb; border: 1px solid #6b7280; }
+    .oportunalia-btn:hover { opacity: .92; }
+
+    #oportunalia-cookie-modal { position: fixed; inset: 0; z-index: 100000; background: rgba(0,0,0,.55); display: none; align-items: center; justify-content: center; padding: 16px; }
+    #oportunalia-cookie-modal .oportunalia-panel { background: #fff; color: #1f2937; max-width: 640px; width: 100%; max-height: 90vh; overflow: auto; border-radius: 14px; padding: 26px; }
+    #oportunalia-cookie-modal h2 { margin: 0 0 6px; font-size: 1.3rem; color: #0d47a1; }
+    #oportunalia-cookie-modal .oportunalia-intro { font-size: .88rem; color: #4b5563; margin: 0 0 16px; line-height: 1.55; }
+    .oportunalia-cat { border: 1px solid #e5e7eb; border-radius: 10px; padding: 14px 16px; margin: 0 0 12px; }
+    .oportunalia-cat-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+    .oportunalia-cat-head h3 { margin: 0; font-size: 1rem; color: #0d47a1; }
+    .oportunalia-cat p { margin: 8px 0 0; font-size: .83rem; color: #4b5563; line-height: 1.5; }
+    .oportunalia-switch { position: relative; display: inline-block; width: 46px; height: 26px; flex: 0 0 auto; }
+    .oportunalia-switch input { opacity: 0; width: 0; height: 0; }
+    .oportunalia-slider { position: absolute; inset: 0; background: #cbd5e1; border-radius: 26px; transition: .2s; cursor: pointer; }
+    .oportunalia-slider:before { content: ""; position: absolute; height: 20px; width: 20px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: .2s; }
+    .oportunalia-switch input:checked + .oportunalia-slider { background: #16a34a; }
+    .oportunalia-switch input:checked + .oportunalia-slider:before { transform: translateX(20px); }
+    .oportunalia-switch input:disabled + .oportunalia-slider { background: #16a34a; opacity: .55; cursor: not-allowed; }
+    .oportunalia-tag { font-size: .72rem; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: .03em; }
+    .oportunalia-modal-actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; justify-content: flex-end; }
+    .oportunalia-modal-actions .oportunalia-btn-accept, .oportunalia-modal-actions .oportunalia-btn-reject { color: #fff; }
+    .oportunalia-modal-actions .oportunalia-btn-save { background: #1d4ed8; color: #fff; }
+    @media(max-width:560px){ #oportunalia-cookie-banner .oportunalia-wrap { flex-direction: column; align-items: flex-start; } #oportunalia-cookie-banner .oportunalia-btns { width: 100%; } .oportunalia-btn { flex: 1 1 auto; text-align: center; } }
+    </style>
+
+    <div id="oportunalia-cookie-banner" role="dialog" aria-live="polite" aria-label="Aviso de cookies">
+      <div class="oportunalia-wrap">
+        <p>
+          Utilizamos cookies propias y de terceros para analizar nuestros servicios y mostrarle publicidad relacionada con sus preferencias en base a un perfil elaborado a partir de sus hábitos de navegación (por ejemplo, páginas visitadas). Para más información consulte la <a href="https://oportunalia.com/cookie-policy">política de cookies</a>. Puede aceptar todas las cookies pulsando el botón “Aceptar”, rechazar su uso pulsando el botón “Rechazar” y configurarlas pulsando el botón “Configurar”.
+        </p>
+        <div class="oportunalia-btns">
+          <button class="oportunalia-btn oportunalia-btn-accept" onclick="window.oportunaliaCookies.acceptAll()">Aceptar</button>
+          <button class="oportunalia-btn oportunalia-btn-config" onclick="window.oportunaliaCookies.openSettings()">Configurar</button>
+          <button class="oportunalia-btn oportunalia-btn-reject" onclick="window.oportunaliaCookies.rejectAll()">Rechazar</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="oportunalia-cookie-modal" role="dialog" aria-modal="true" aria-label="Configuración de cookies">
+      <div class="oportunalia-panel">
+        <h2>Configuración de cookies</h2>
+        <p class="oportunalia-intro">
+          Active o desactive las categorías de cookies y guarde su selección. Las cookies técnicas son necesarias para el funcionamiento del sitio y no pueden desactivarse. Puede cambiar esta configuración o retirar su consentimiento en cualquier momento.
+        </p>
+
+        <!-- Cookies Técnicas y Funcionales (Corregida con sus clases originales) -->
+        <div class="oportunalia-cat">
+          <div class="oportunalia-cat-head">
+            <h3>Cookies técnicas y funcionales</h3>
+            <label class="oportunalia-switch">
+              <!-- Ahora inicia desmarcado, sin bloqueos y con la lógica intacta -->
+              <input type="checkbox" id="oportunalia-cat-tecnicas">
+              <span class="oportunalia-slider"></span>
+            </label>
+          </div>
+          <p>Permiten la navegación y el uso de las funciones básicas del sitio, tales como la seguridad (AEC, SOCS) y la gestión de pasarelas de pago (Stripe). Son imprescindibles para el correcto funcionamiento del portal.</p>
+        </div>
+
+        <div class="oportunalia-cat">
+          <div class="oportunalia-cat-head">
+            <h3>Cookies analíticas</h3>
+            <label class="oportunalia-switch"><input type="checkbox" id="oportunalia-cat-analytics"><span class="oportunalia-slider"></span></label>
+          </div>
+          <p>Permiten identificar a los usuarios (Google Analytics), midiendo y analizando estadísticas del comportamiento de navegación con el fin de introducir mejoras en el sitio web. Se activan solo con su consentimiento.</p>
+        </div>
+
+        <div class="oportunalia-cat">
+          <div class="oportunalia-cat-head">
+            <h3>Cookies de publicidad / marketing</h3>
+            <label class="oportunalia-switch"><input type="checkbox" id="oportunalia-cat-marketing"><span class="oportunalia-slider"></span></label>
+          </div>
+          <p>Permiten la gestión de espacios publicitarios (Google Ads, AdSense, Facebook) para experimentar con la eficiencia de los servicios y mostrarle anuncios personalizados de acuerdo con sus intereses. Se activan solo con su consentimiento.</p>
+        </div>
+
+        <div class="oportunalia-modal-actions">
+          <button class="oportunalia-btn oportunalia-btn-reject" onclick="window.oportunaliaCookies.rejectAll()">Rechazar todas</button>
+          <button class="oportunalia-btn oportunalia-btn-save" onclick="window.oportunaliaCookies.saveSelection()">Guardar selección</button>
+          <button class="oportunalia-btn oportunalia-btn-accept" onclick="window.oportunaliaCookies.acceptAll()">Aceptar todas</button>
+        </div>
+      </div>
+    </div>
 </div>
