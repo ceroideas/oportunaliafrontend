@@ -161,7 +161,7 @@
 
                       <!-- Form pujas -->
 
-                      <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid && property?.auction_type_id==1" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">                                                
+                      <form class="gap-1 p-3 mt-3 bg-sky flx column" *ngIf="this.userService.isLoggedIn && property.deposit_valid && property?.auction_type_id==1" [formGroup]="bidForm" (ngSubmit)="onBidFormSubmit(bidForm.value)">
 
                         <div fxLayout="col wrap">
                           <mat-label>Representado</mat-label>
@@ -170,7 +170,7 @@
                           </mat-select>
                           <mat-error *ngIf="bidForm.get('representation_id').hasError('required')"> Este campo es obligatorio. </mat-error>
                         </div>
-                        
+
                         <div class="row">
                           <div class="label">Mejor Puja</div>
                           <div class="value">{{property.max_bid ?? 0 | currency : 'EUR' : 'symbol' : '1.0'}} </div>
@@ -199,17 +199,17 @@
 
                         <!-- <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
                           <mat-label>Subir justificante de depósito:</mat-label>
-                          <input type="file" id="fileInput" class="file-input" />                       
+                          <input type="file" id="fileInput" class="file-input" />
                         </div> -->
 
                         <button mat-raised-button color="primary" (click)="onBidFormSubmit(bidForm.value)" type="button" class="btn-primary uppercase">Pujar</button>
                         <p *ngIf="property.deposit === 0" class="fw-300 fc-primary">Este inmueble no requiere deposito</p>
                       </form>
 
-                      
+
                       <div
                         *ngIf="this.userService.isLoggedIn && property.deposit_valid &&  (property?.auction_type_id==2 || property?.auction_type_id==3 || property?.auction_type_id==4)" class="gap-1 p-3 mt-3 bg-sky flx column"
-                       
+
                         >
 
                         <div class="row">
@@ -229,7 +229,7 @@
                             <mat-option *ngFor="let representation of representations" [value]="representation.guid">{{ representation.alias }}</mat-option>
                           </mat-select>
                         </div> -->
-<!-- 
+<!--
                         <div fxLayout="col wrap">
                           <mat-label>Comprobande de depósito</mat-label>
                           <input (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" />
@@ -237,7 +237,7 @@
 
                         <button mat-raised-button color="primary" (click)="onSubmit()" type="button" class="btn-primary uppercase">Enviar oferta</button>
                         <p *ngIf="property.deposit === 0" class="fw-300 fc-primary">Este inmueble no requiere deposito</p>
-                      </div> 
+                      </div>
 
                       <form
                         *ngIf="this.userService.isLoggedIn && !property.deposit_valid" class="gap-1 p-3 mt-3 bg-sky flx column"
@@ -269,7 +269,7 @@
                           <div class="label">Pujas</div>
                           <div class="value">{{property.bids}} </div>
                         </div>
-                        
+
                         <div fxLayout="row wrap my-bid" *ngIf="!property.deposit_valid" class="file-upload">
                           <mat-label for="fileInput">Subir justificante de depósito:</mat-label>
                           <input type="file" id="fileInput" (change)="onFileChange($event)" formControlName="file" data-max-size="2048" type="file" accept=".png,.jpeg,.jpg,.pdf" class="file-input" />
@@ -356,6 +356,19 @@
                               <textarea matInput placeholder="Mensaje (Opcional)" formControlName="message" rows="6"></textarea>
                               <!-- <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error> -->
                           </mat-form-field>
+                          <section>
+                            <mat-checkbox formControlName="aceptaPrivacidad" required>
+                              He leído y acepto la <a href="https://oportunalia.com/privacy-policy" target="_blank">Política de Privacidad.</a>
+                            </mat-checkbox>
+                            <mat-error style="background: white !important;" *ngIf="contactForm.controls.aceptaPrivacidad.errors?.required">Debes aceptar la Política de Privacidad.</mat-error>
+                          </section>
+                          <section class="text-justify">
+                            Le informamos que el responsable de los datos personales que facilite a través de este formulario será OPORTUNALIA ACTIVOS S.L. .
+                            Sus datos serán tratados para resolver sus consultas, tramitar su registro en nuestro sitio web, facilitarle la información, tramitar
+                            los servicios solicitados, o para remitirle información que pueda resultar de su interés y no serán comunicados a terceros salvo por
+                            obligación legal. Podrá ejercer sus derechos a través de la siguiente dirección: proteccióndatosoportunalia.com. Puede consultar más
+                            información en la <a href="https://oportunalia.com/privacy-policy" target="_blank">Política de Privacidad.</a>
+                          </section>
                           <div class="text-center">
                               <button mat-raised-button color="primary" type="submit">Enviar</button>
                           </div>
@@ -421,7 +434,7 @@
                         <div id="main-carousel" class="swiper-container" [swiper]="config" (indexChange)="onIndexChange($event)">
                             <div class="swiper-wrapper">
                                 <div *ngFor="let image of property?.images" class="swiper-slide">
-                                  
+
                                     <div class="mainCover h100" [ngStyle]="{'background-image': 'url(' + image.path + ')'}"></div>
                                     <img [attr.data-src]="image.path" class="swiper-lazy" style="display: none;">
                                     <div class="swiper-lazy-preloader"></div>
@@ -497,7 +510,7 @@
                   <h3 class="fw-700 fs-1x">Condiciones particulares</h3>
                   <mat-card-content class="pt-2" style="padding-left: 0 !important;">
                     <div [innerHTML]="property.conditions">
-                      
+
                     </div>
                     <!-- <ol>
                       <li>Valoración: {{ property?.appraisal_value | currency : 'EUR' : 'symbol' : '1.2-2' }}</li>

@@ -116,13 +116,13 @@
                     </mat-form-field>
                 </div>
                 <div fxFlex="50" class="px-1 mt-1 custom-form-field">
-                    <mat-label>Apellido*</mat-label>                        
+                    <mat-label>Apellido*</mat-label>
                     <mat-form-field>
-                    <input                                            
+                    <input
                         matInput placeholder="Apellido" formControlName="lastname" required>
                         <mat-error style="background: white !important;" *ngIf="contactForm.controls.lastname.errors?.required">Apellido obligatorio</mat-error>
                     </mat-form-field>
-                </div>                 
+                </div>
                 <div fxFlex="50" fxFlex.gt-sm="50" class="px-1 custom-form-field" ngClass.sm="mt-1" ngClass.xs="mt-1">
                     <mat-label>Email*</mat-label>
                     <mat-form-field>
@@ -137,14 +137,14 @@
                         <input matInput placeholder="Teléfono" type="phone" formControlName="phone" required>
                         <mat-error style="background: white !important;" *ngIf="contactForm.controls.phone.errors?.required">Tel&eacute;fono obligatorio</mat-error>
                     </mat-form-field>
-                </div>                
+                </div>
                 <div fxFlex="100" class="px-1 mt-1 custom-form-field">
-                    <mat-label>Asunto*</mat-label>                        
+                    <mat-label>Asunto*</mat-label>
                     <mat-form-field>
                         <input matInput placeholder="Asunto" formControlName="subject" required>
                         <mat-error style="background: white !important;" *ngIf="contactForm.controls.subject.errors?.required">Asunto obligatorio</mat-error>
                     </mat-form-field>
-                </div>               
+                </div>
                 <div fxFlex="100" class="px-1 mt-1 custom-form-field">
                     <mat-label>Mensaje*</mat-label>
                     <mat-form-field>
@@ -153,7 +153,17 @@
                     </mat-form-field>
                 </div>
                 <section>
-                  <mat-checkbox>He leido y acepto los terminos y condiciones</mat-checkbox>
+                  <mat-checkbox formControlName="aceptaPrivacidad" required>
+                    He leído y acepto la <a href="https://oportunalia.com/privacy-policy" target="_blank">Política de Privacidad.</a>
+                  </mat-checkbox>
+                  <mat-error style="background: white !important;" *ngIf="contactForm.controls.aceptaPrivacidad.errors?.required">Debes aceptar la Política de Privacidad.</mat-error>
+                </section>
+                <section>
+                  Le informamos que el responsable de los datos personales que facilite a través de este formulario será OPORTUNALIA ACTIVOS S.L. .
+                  Sus datos serán tratados para resolver sus consultas, tramitar su registro en nuestro sitio web, facilitarle la información, tramitar
+                  los servicios solicitados, o para remitirle información que pueda resultar de su interés y no serán comunicados a terceros salvo por
+                  obligación legal. Podrá ejercer sus derechos a través de la siguiente dirección: proteccióndatosoportunalia.com. Puede consultar más
+                  información en la <a href="https://oportunalia.com/privacy-policy" target="_blank">Política de Privacidad.</a>
                 </section>
                 <div class="w-100 py-2 pb-6">
                     <button mat-raised-button color="primary" type="submit" class="uppercase pt-4 pb-4 pr-6 pl-6">Enviar</button>
@@ -168,10 +178,6 @@
               </div>
           </div> -->
         </div>
-
-
-
-
     </div>
 
-</div>                
+</div>

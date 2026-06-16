@@ -155,7 +155,8 @@ export class PropertyComponent implements OnInit {
       subject: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: [''],
-      lastname: ['']
+      lastname: [''],
+      aceptaPrivacidad: [false, Validators.required]
     });
   }
 
@@ -486,7 +487,7 @@ export class PropertyComponent implements OnInit {
     })
     if (this.contactForm.valid) {
       this.publicService.sendContactData(values)
-      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'), 
+      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'),
         (_) => this.appService.openAlertDialog('Error al enviar mensaje'));
     }
   }

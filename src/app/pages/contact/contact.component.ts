@@ -18,10 +18,10 @@ export class ContactComponent implements OnInit {
     { lat: 40.678178, lng: -73.944158 }
   ];
   mapOptions: google.maps.MapOptions = {
-    fullscreenControl: true, 
+    fullscreenControl: true,
     mapTypeControl: true
   }
- 
+
   constructor(public formBuilder: UntypedFormBuilder,
     public publicService: PublicService,
     public appService: AppService
@@ -35,13 +35,14 @@ export class ContactComponent implements OnInit {
       subject: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, emailValidator])],
       phone: ['', Validators.required],
-      lastname: ['', Validators.required]
+      lastname: ['', Validators.required],
+      aceptaPrivacidad: [false, Validators.required]
     });
   }
   public onContactFormSubmit(values:Object):void {
-    if (this.contactForm.valid) {      
+    if (this.contactForm.valid) {
       this.publicService.sendContactData(values)
-      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'), 
+      .subscribe((_) => this.appService.openAlertDialog('Mensaje enviado'),
         (_) => this.appService.openAlertDialog('Error al enviar mensaje'));
     }
   }
